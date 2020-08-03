@@ -18,8 +18,9 @@ import java.util.Date;
 public class QuickSort {
     public static void main(String[] args) {
         //创建要给80000个的随机的数组
-        int[] arr = new int[10000000];
-        for(int i =0; i < 10000000;i++) {
+
+        int[] arr = new int[8000000];
+        for(int i =0; i < 8000000;i++) {
             arr[i] = (int)(Math.random() * 1000000); //生成一个[0, 8000000) 数
         }
 

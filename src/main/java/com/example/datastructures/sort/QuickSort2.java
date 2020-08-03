@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 /**
  * 快排，以左边为基准
+ * 练习
  */
 public class QuickSort2 {
     public static void main(String[] args) {

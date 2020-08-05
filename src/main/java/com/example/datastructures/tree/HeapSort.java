@@ -1,6 +1,8 @@
 package com.example.datastructures.tree;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 
 /**
  * 堆排序
@@ -8,9 +10,23 @@ import java.util.Arrays;
 public class HeapSort {
     public static void main(String[] args) {
         //要求将数组进行升序排序
-        int arr[]={4,6,8,5,9};
+//        int arr[]={4,6,8,5,9};
+
+        int[] arr = new int[8000000];
+        for(int i =0; i < 8000000;i++) {
+            arr[i] = (int)(Math.random() * 8000000); //生成一个[0, 8000000) 数
+        }
+
+        Date data1 = new Date();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String date1Str = simpleDateFormat.format(data1);
+        System.out.println("排序前的时间是=" + date1Str);
 
         heapSort(arr);
+
+        Date data2 = new Date();
+        String date2Str = simpleDateFormat.format(data2);
+        System.out.println(date2Str);
     }
     //编写一个堆排序方法
     public static void heapSort(int arr[]){
@@ -27,7 +43,7 @@ public class HeapSort {
             //每一次循环都是以一个非叶子节点为根节点，进行调整
             adjustHeap(arr,i,arr.length);
         }
-        System.out.println("大顶堆："+Arrays.toString(arr));
+//        System.out.println("大顶堆："+Arrays.toString(arr));
 
         int temp=0;
         //2.将堆顶元素与末尾元素交换，将最大元素沉到数组末端
@@ -42,7 +58,7 @@ public class HeapSort {
             //要排序的是前面的元素
             adjustHeap(arr,0,i);
         }
-        System.out.println("堆排序："+Arrays.toString(arr));
+//        System.out.println("堆排序："+Arrays.toString(arr));
     }
     /**
      * 将一个数组(二叉树)，调整成一个大顶堆

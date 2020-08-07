@@ -33,7 +33,18 @@ public class BinarySortTreeDemo {
 //        binarySortTree.midOrder();
 
         //测试删除有两个孩子的非叶子节点
+//        binarySortTree.delNode(3);
+//        System.out.println("删除节点后");
+//        binarySortTree.midOrder();
+
+        binarySortTree.delNode(2);
+        binarySortTree.delNode(5);
+        binarySortTree.delNode(9);
+        binarySortTree.delNode(12);
+        binarySortTree.delNode(7);
         binarySortTree.delNode(3);
+        binarySortTree.delNode(10);
+        binarySortTree.delNode(1);
         System.out.println("删除节点后");
         binarySortTree.midOrder();
     }
@@ -153,28 +164,44 @@ class BinarySortTree{
             else{
                 //要删除的节点有一个左子节点
                 if(targetNode.left!=null){
-                    //要删除的节点为父节点的左节点
-                    if(parent.left==targetNode){
-                        //删除节点
-                        parent.left=targetNode.left;
+                    //父节点存在
+                    if (parent!=null) {
+                        //要删除的节点为父节点的左节点
+                        if (parent.left == targetNode) {
+                            //删除节点
+                            parent.left = targetNode.left;
+                        }
+                        //要删除的节点为父节点的右节点
+                        else if (parent.right == targetNode) {
+                            //删除节点
+                            parent.right = targetNode.left;
+                        }
                     }
-                    //要删除的节点为父节点的右节点
-                    else if(parent.right==targetNode){
-                        //删除节点
-                        parent.right=targetNode.left;
+                    //父节点不存在，比如删除root节点
+                    //设置root节点为root节点的左节点
+                    else {
+                        root=targetNode.left;
                     }
                 }
                 //要删除的节点有一个右子节点
                 else if (targetNode.right!=null){
-                    //要删除的节点为父节点的左节点
-                    if(parent.left==targetNode){
-                        //删除节点
-                        parent.left=targetNode.right;
+                    //父节点存在
+                    if (parent!=null) {
+                        //要删除的节点为父节点的左节点
+                        if (parent.left == targetNode) {
+                            //删除节点
+                            parent.left = targetNode.right;
+                        }
+                        //要删除的节点为父节点的右节点
+                        else if (parent.right == targetNode) {
+                            //删除节点
+                            parent.right = targetNode.right;
+                        }
                     }
-                    //要删除的节点为父节点的右节点
-                    else if(parent.right==targetNode){
-                        //删除节点
-                        parent.right=targetNode.right;
+                    //父节点不存在，比如：删除root节点
+                    //设置root节点为root节点的右节点
+                    else {
+                        root=targetNode.right;
                     }
                 }
             }

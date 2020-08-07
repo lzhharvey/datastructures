@@ -5,7 +5,9 @@ package com.example.datastructures.avl;
 
 public class AvlTreeDemo {
     public static void main(String[] args) {
-        int[] arr={4,3,6,5,7,8};
+//        int[] arr={4,3,6,5,7,8};
+//        int[] arr={10,12, 8, 9, 7, 6};
+        int[] arr = { 10, 11, 7, 6, 8, 9 };
         //创建AVL树
         AVLTree avlTree = new AVLTree();
         //添加节点
@@ -13,14 +15,15 @@ public class AvlTreeDemo {
             avlTree.add(new Node(arr[i]));
         }
         //中序遍历树
-        System.out.println("中序遍历树：");
-        avlTree.midOrder();
+//        System.out.println("中序遍历树：");
+//        avlTree.midOrder();
 
         //获取树的高度（新）
         System.out.println("在没有进行平衡处理前：");
         System.out.println("树高："+avlTree.getRoot().height());//4
         System.out.println("树的左子树的高度："+avlTree.getRoot().left.height());//1
         System.out.println("树的右子树的高度："+avlTree.getRoot().right.height());//3
+        System.out.println(avlTree.getRoot().right.right);
     }
 }
 
@@ -133,8 +136,30 @@ class Node{
         }
         //当添加完一个节点后，如果（右子树高度-左子树高度）>1，左旋转
         if (getRightHeight()-getLeftHeight()>1){
-            //左旋转
-            leftRotate();
+            //如果它的右子树的左子树的高度大于右子树的高度
+            if (right!=null && right.getLeftHeight()>right.getRightHeight()) {
+                //先对当前节点的右节点进行右旋转
+                right.rightRotate();
+                //再对当前节点进行左旋转
+                this.leftRotate();
+            }else {
+                //直接左旋转
+                this.leftRotate();
+            }
+            return;//必须要，走完这段代码，树已经平衡了，不让程序往下走，以免出现问题
+        }
+        //当添加完一个节点后，如果（左子树高度-右子树高度）>1，右旋转
+        if (getLeftHeight()-getRightHeight()>1){
+            //如果它的左子树的右子树高度大于它的左子树的高度
+            if (left!=null && left.getRightHeight()>left.getLeftHeight()){
+                //先对当前节点的左节点进行左旋转
+                left.leftRotate();
+                //再对当前节点进行右旋转
+                this.rightRotate();
+            }else {
+                //直接右旋转
+                this.rightRotate();
+            }
         }
     }
     //中序遍历
@@ -154,8 +179,7 @@ class Node{
     private void leftRotate(){
         //1.创建一个新的节点，以根节点的值作为它的值
         Node newNode = new Node(value);
-        //2.
-        // 把新节点的左子树设置为当前节点的左子树
+        //2.把新节点的左子树设置为当前节点的左子树
         newNode.left=this.left;
         //3.把新节点的右子树设置为当前节点的右子树的左子树
         newNode.right=this.right.left;
@@ -166,6 +190,22 @@ class Node{
         //6.把当前节点的左子树设置为新节点
         left=newNode;
     }
+    //右旋转方法
+    private void  rightRotate(){
+        //1.创建一个新的节点，以根节点的值作为它的值
+        Node newNode = new Node(value);
+        //2.把新节点的右子树设置为当前节点的右子树
+        newNode.right=right;
+        //3.把新节点的左子树设置为当前节点的左子树的右子树
+        newNode.left=left.right;
+        //4.把当前节点的值换为左子节点的值
+        value=left.value;
+        //5.把当前节点的左子树设置成左子树的左子树
+        left=left.left;
+        //6.把当前节点的右子树设置为新节点
+        right=newNode;
+    }
+
     @Override
     public String toString() {
         return "Node{" +

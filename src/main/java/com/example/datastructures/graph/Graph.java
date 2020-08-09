@@ -185,9 +185,9 @@ public class Graph {
 
         //节点
         //测试数据一
-        String[] vertexs={"A","B","C","D","E"};
+//        String[] vertexs={"A","B","C","D","E"};
         //测试数据二
-//        String[] vertexs={"0","1","2","3","4","5","6","7","8","9","10"};
+        String[] vertexs={"1","2","3","4","5","6","7","8"};
 
         //创建图对象
         Graph graph = new Graph(vertexs.length);
@@ -199,30 +199,27 @@ public class Graph {
 
         //添加边
         //边AB
-        graph.insertEdges(0,1,1);
-        //边AC
-        graph.insertEdges(0,2,1);
-        //BC
-        graph.insertEdges(1,2,1);
+//        graph.insertEdges(0,1,1);
+//        //边AC
+//        graph.insertEdges(0,2,1);
+//        //BC
+//        graph.insertEdges(1,2,1);
         //BD
 //        graph.insertEdges(1,3,1);
         //BE
 //        graph.insertEdges(1,4,1);
         //DE
-        graph.insertEdges(3,4,1);
+//        graph.insertEdges(3,4,1);
 
-//        graph.insertEdges(0,1,1);
-//        graph.insertEdges(0,2,1);
-//        graph.insertEdges(0,3,1);
-//        graph.insertEdges(0,4,1);
-//        graph.insertEdges(1,4,1);
-//        graph.insertEdges(1,7,1);
-//        graph.insertEdges(1,9,1);
-//        graph.insertEdges(3,5,1);
-//        graph.insertEdges(3,6,1);
-//        graph.insertEdges(4,5,1);
-//        graph.insertEdges(7,8,1);
-//        graph.insertEdges(7,10,1);
+        graph.insertEdges(0, 1, 1);
+        graph.insertEdges(0, 2, 1);
+        graph.insertEdges(1, 3, 1);
+        graph.insertEdges(1, 4, 1);
+        graph.insertEdges(3, 7, 1);
+        graph.insertEdges(4, 7, 1);
+        graph.insertEdges(2, 5, 1);
+        graph.insertEdges(2, 6, 1);
+        graph.insertEdges(5, 6, 1);
 
         //显示邻接矩阵
         graph.showGraph();
@@ -233,6 +230,6 @@ public class Graph {
         System.out.println();
         //广度优先遍历
         System.out.println("广度优先遍历：");
-        graph.dfs();
+        graph.bfs();
     }
 }

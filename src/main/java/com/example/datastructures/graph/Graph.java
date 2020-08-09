@@ -2,6 +2,7 @@ package com.example.datastructures.graph;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 
 public class Graph {
     //存储顶点集合
@@ -19,7 +20,6 @@ public class Graph {
         edges=new int[n][n];
         vertexList=new ArrayList<>(n);
         numOfEdges=0;
-        isVisited=new boolean[n];
     }
     //插入节点
     public void insertVertex(String vertex){
@@ -131,8 +131,55 @@ public class Graph {
                 dfs(isVisited, i);
             }
         }
-//        dfs(isVisited,0);
     }
+    //对一个节点进行广度优先遍历的方法
+    public void bfs(boolean[] isVisited, int i){
+        //队头头结点
+        int u;
+        //领接节点
+        int w;
+        //标记初始节点为已经访问
+        isVisited[i]=true;
+        //使用LinkedList作为队列，因为有addLast,moveFirst方法
+        LinkedList queue=new LinkedList();
+        //初始节点入队列
+        queue.addLast(i);
+        //访问节点，输出节点信息
+        System.out.print(getValueByIndex(i)+"=>");
+        //队列非空
+        while(!queue.isEmpty()){
+            //取出队列头节点
+            u=(Integer)queue.removeFirst();
+            //获取节点的第一个领接节点w
+            w=getFirstNeighbor(u);
+            //领接节点w存在
+            while(w!=-1){
+                //领接节点w没有被访问过
+                if (!isVisited[w]){
+                    //访问领接节点
+                    isVisited[w]=true;
+                    System.out.print(getValueByIndex(w) + "=>");
+                    //领接节点w入队列
+                    queue.addLast(w);
+                }
+                //以u为前驱节点，获取领接节点w的下一个领接节点
+                w= getNextNeighbor(u, w);
+            }
+        }
+    }
+    //对bfs进行一个重载, 遍历我们所有的结点，并进行bfs
+    //重载是考虑了不连通图，例如a-b-c连通，d-e连通，但是abcde整体并不连通，只用上边的方法并不能完整遍历，需要用到下边的重载方法！
+    public void bfs() {
+        isVisited = new boolean[vertexList.size()];
+
+        //遍历所有的结点，进行bfs
+        for(int i = 0; i < getNumOfVertex(); i++) {
+            if(!isVisited[i]) {
+                bfs(isVisited, i);
+            }
+        }
+    }
+
     public static void main(String[] args) {
         //测试图是否创建成功
 
@@ -179,7 +226,13 @@ public class Graph {
 
         //显示邻接矩阵
         graph.showGraph();
+        //深度优先遍历
+        System.out.println("深度优先遍历：");
+        graph.dfs();
+
+        System.out.println();
         //广度优先遍历
+        System.out.println("广度优先遍历：");
         graph.dfs();
     }
 }

@@ -1,7 +1,7 @@
 package com.example.datastructures.algorithm;
 
 /**
- * 分治算法解决汉诺塔问题
+ * 分治算法-解决汉诺塔问题
  */
 public class Hanoitower {
     public static void main(String[] args) {

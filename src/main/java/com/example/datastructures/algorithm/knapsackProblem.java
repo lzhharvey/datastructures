@@ -1,12 +1,8 @@
 package com.example.datastructures.algorithm;
 
 /**
- * @ClassName knapsackProblem
- * @Description TODO
- * @Author liuzhihui
- * @Date 2020/8/10 9:32
- * @Version 1.0
- **/
+ * 动态规划-解决背包问题
+ */
 public class knapsackProblem {
     public static void main(String[] args) {
         //物品重量

@@ -3,12 +3,8 @@ package com.example.datastructures.algorithm;
 import java.util.Arrays;
 
 /**
- * @ClassName KMPAlgorithm
- * @Description TODO
- * @Author liuzhihui
- * @Date 2020/8/10 16:36
- * @Version 1.0
- **/
+ * kmp搜索算法实现
+ */
 public class KMPAlgorithm {
 
     public static void main(String[] args) {

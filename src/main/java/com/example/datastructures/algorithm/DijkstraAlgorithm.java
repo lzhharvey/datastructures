@@ -52,7 +52,6 @@ class DijkstraGraph{
     public void showDij(){
         vv.show();
     }
-
     /**
      * 迪杰斯特拉算法实现
      * @param index 出发点对应的下标
@@ -90,10 +89,8 @@ class DijkstraGraph{
                 //更新出发顶点到i顶点的距离
                 vv.updateDis(i,len);
             }
-
         }
     }
-
 }
 //已访问顶点集合
 class VisitedVertex{

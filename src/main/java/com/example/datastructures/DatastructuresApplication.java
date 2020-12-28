@@ -9,7 +9,6 @@ import java.util.ArrayList;
 public class DatastructuresApplication {
 
     public static void main(String[] args) {
-        new ArrayList<>();
         SpringApplication.run(DatastructuresApplication.class, args);
     }
 
